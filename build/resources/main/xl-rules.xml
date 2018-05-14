@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<rules xmlns="http://www.xebialabs.com/xl-deploy/xl-rules">
+    <rule name="ExecuteJettyChangeLog" scope="deployed">
+        <conditions>
+            <type>jetty.ExecutedChangelog</type>
+            <operation>CREATE</operation>
+            <operation>DESTROY</operation>
+            <operation>MODIFY</operation>
+        </conditions>
+        <planning-script-path>jetty/rule.py</planning-script-path>
+    </rule>
+</rules>
