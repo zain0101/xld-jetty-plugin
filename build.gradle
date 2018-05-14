@@ -33,8 +33,3 @@ processResources.configure {
             'project.name': rootProject.name
     ]
 }
-
-license {
-    header rootProject.file('src/main/license/xebialabs_community.license')
-    strictCheck true
-}
