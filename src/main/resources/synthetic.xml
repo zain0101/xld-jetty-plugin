@@ -1,39 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-
-    Copyright 2017 XEBIALABS
-
-    Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
--->
-
 <synthetic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.xebialabs.com/deployit/synthetic" xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd">
-
-    <type type="jetty.ExecutedChangelog" extends="udm.BaseDeployedArtifact" deployable-type="jetty.Changelog" container-type="jetty.Runner" description="Executed jetty changelog">
-		<generate-deployable type="jetty.Changelog" extends="udm.BaseDeployableFolderArtifact" />
-		<property name="changeLogFile"/>
-		<property name="rollbackVersion" kind="integer"/>
-		<property name="baseRollbackTag" default="xld_liquibase_base_version" hidden="true"/>
+ 	<type type="jetty.Server" inspectable="true" extends="generic.Container">
+        <property name="serverAddress" description="XL Deploy server address" />
+        <property name="serverPort" kind="integer" description="XL Deploy server port" default="4516" />
+        <property name="username" description="XL Deploy user name" />
+        <property name="password" password="true" description="XL Deploy user password" />
+        <property name="useHttps" kind="boolean" default="false" description="Connect to XL Deploy using XL Deploy connection" />
+        <property name="ignoreSSLWarnings" label="Ignore SSL warnings"  kind="boolean" default="false" description="Ignore SSL security warnings (accept all SSL certificates)." />
+        <property name="ensureSamePath" kind="boolean" default="false" description="Make sure the application exists on the target instance at the same path as the source instance." />
+	</type>
+	<type type="jetty.DeployedDarPackage" extends="jetty.BaseDarPackage" deployable-type="jetty.DarPackage" container-type="jetty.Server">
+		<generate-deployable type="jetty.DarPackage" extends="udm.BaseDeployable"
+            description="Dar export of deployment package"/>
     </type>
-
-    <type type="jetty.Runner" extends="generic.Container" description="jetty runner">
-        <property name="updateScript"  hidden="true" default="jetty/jetty" />
-		<property name="testScript"  hidden="true" default="jetty/test" />
-		<property name="databaseUsername" required="false"/>
-		<property name="databasePassword" password="true" required="false"/>
-		<property name="databaseJDBCURL" label="Database URL" required="false"/>
-		<property name="databaseJDBCDriver" label="Database Driver" required="false"/>
-		<property name="jettyExtraArguments" description="Use to pass extra arguments to the jetty command." required="false"/>
-		<property name="jettyConfigurationPath" required="false"/>
-		<property name="jettyJarPath" default="jetty.jar"/>
-		<property name="javaCmd" default="java"/>
-		<property name="driverClasspath" required="false"/>
-		<method name="test" label="Test jetty" description="Test jetty installation"/>
-    </type> 
-
 </synthetic>
-   
