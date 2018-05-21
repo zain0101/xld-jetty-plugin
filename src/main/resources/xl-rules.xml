@@ -1,21 +1,7 @@
-<rules xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns="http://www.xebialabs.com/xl-deploy/xl-rules" >
-
-    <rule name="jetty.DeployedDarPackage.Export" scope="deployed">
-        <conditions>
-            <type>jetty.DeployedDarPackage</type>
-            <operation>CREATE</operation>
-            <operation>MODIFY</operation>
-            <operation>NOOP</operation>
-        </conditions>
-        <steps>
-            <jython>
-                <order>50</order>
-                <description expression="true">"Transfer deployment package to XL Deploy server [%s:%s]" % (deployed.container.serverAddress, deployed.container.serverPort)</description>
-                <script-path>jetty/export_dar.py</script-path>
-            </jython>
-        </steps>
-    </rule>
-
-
+<?xml version="1.0"?>
+<!--
+    Note: If you modify this file and automatic reloading is disabled in `planner.conf`, you must restart the XL Deploy server.
+-->
+<rules xmlns="http://www.xebialabs.com/xl-deploy/xl-rules">
+    <!-- Add your <rule ...> and <disable-rule ...> elements here -->
 </rules>

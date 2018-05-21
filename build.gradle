@@ -7,8 +7,6 @@ plugins {
 
 version='0.0.1-SNAPSHOT'
 def apiVersion = '2017.5.0'
-apply plugin: 'java'
-apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: 'maven'
 
@@ -21,7 +19,7 @@ repositories {
 }
 
 dependencies {
-    compile "com.xebialabs.deployit:udm-plugin-api:$apiVersion"
+//    compile "com.xebialabs.deployit:udm-plugin-api:$apiVersion"
     compile "org.apache.httpcomponents:httpmime:4.5.2"
     distBundle "org.apache.httpcomponents:httpmime:4.5.2"
 }

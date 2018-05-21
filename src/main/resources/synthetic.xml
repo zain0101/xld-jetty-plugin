@@ -1,15 +1,21 @@
-<synthetic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.xebialabs.com/deployit/synthetic" xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd">
- 	<type type="jetty.Server" inspectable="true" extends="generic.Container">
-        <property name="serverAddress" description="XL Deploy server address" />
-        <property name="serverPort" kind="integer" description="XL Deploy server port" default="4516" />
-        <property name="username" description="XL Deploy user name" />
-        <property name="password" password="true" description="XL Deploy user password" />
-        <property name="useHttps" kind="boolean" default="false" description="Connect to XL Deploy using XL Deploy connection" />
-        <property name="ignoreSSLWarnings" label="Ignore SSL warnings"  kind="boolean" default="false" description="Ignore SSL security warnings (accept all SSL certificates)." />
-        <property name="ensureSamePath" kind="boolean" default="false" description="Make sure the application exists on the target instance at the same path as the source instance." />
-	</type>
-	<type type="jetty.DeployedDarPackage" extends="jetty.BaseDarPackage" deployable-type="jetty.DarPackage" container-type="jetty.Server">
-		<generate-deployable type="jetty.DarPackage" extends="udm.BaseDeployable"
-            description="Dar export of deployment package"/>
-    </type>
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+    Note: If you modify this file, you must restart the XL Deploy server.
+-->
+<synthetic xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd" xmlns="http://www.xebialabs.com/deployit/synthetic" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<type type="jetty.Server" extends="generic.Container">
+    <property name="home" default="/opt/cp/container"/>
+    <property name="serviceStart" default=""/>
+    <property name="serviceStop" default=""/>
+    <property name="serviceStatus" default=""/> 
+    <property name="targetDirectory" default="${container.home}/apps"/>
+    <property name="artifactsName" default="startup.war"/>
+</type>
+
+<type type="jetty.DeployedApp" extends="generic.ExecutedScriptWithDerivedArtifact" deployable-type="jetty.App" container-type="jetty.Server">
+    <generate-deployable type="jetty.App" extends="generic.Archive"/>
+    <property name="createScript" default="jetty/install-app.sh" hidden="true"/>
+    <property name="modifyScript" default="jetty/reinstall-app.sh" hidden="true"/>
+    <property name="destroyScript" default="jetty/uninstall-app.sh" hidden="true"/>
+</type>
 </synthetic>
