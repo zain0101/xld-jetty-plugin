@@ -1,7 +1,7 @@
  xmlns="http://www.xebialabs.com/xl-deploy/xl-rules">
     <rule name="ExecuteJettyChangeLog" scope="deployed">
         <conditions>
-            <type>jetty.ExecutedChangelog</type>
+            <type>jetty.DeployedApp</type>
             <operation>CREATE</operation>
             <operation>DESTROY</operation>
             <operation>MODIFY</operation>
