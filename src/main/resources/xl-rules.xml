@@ -1,7 +1,11 @@
-<?xml version="1.0"?>
-<!--
-    Note: If you modify this file and automatic reloading is disabled in `planner.conf`, you must restart the XL Deploy server.
--->
-<rules xmlns="http://www.xebialabs.com/xl-deploy/xl-rules">
-    <!-- Add your <rule ...> and <disable-rule ...> elements here -->
+ xmlns="http://www.xebialabs.com/xl-deploy/xl-rules">
+    <rule name="ExecuteJettyChangeLog" scope="deployed">
+        <conditions>
+            <type>jetty.ExecutedChangelog</type>
+            <operation>CREATE</operation>
+            <operation>DESTROY</operation>
+            <operation>MODIFY</operation>
+        </conditions>
+        <planning-script-path>jetty/rule.sh</planning-script-path>
+    </rule>
 </rules>
