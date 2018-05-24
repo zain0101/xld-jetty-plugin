@@ -1,6 +1,6 @@
 echo reinstalling archive ${deployed.deployable.file} in ${deployed.container.home}
 echo Stop the service...
-echo ${deployed.container.serviceStop}
+${deployed.container.serviceStop}
 echo Removing old artifacts
 sleep 15s
 rm -rf ${deployed.container.targetDirectory}/${deployed.container.artifactsName}
